@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import DropdownMenu from './DropdownMenu';
+import MagicBento from './MagicBento';
 
 const ValueCard = ({ 
   letter, 
@@ -22,23 +23,32 @@ const ValueCard = ({
   };
 
   const cardContent = (
-    <div
-      onClick={!dropdownItems ? handleClick : undefined}
-      className={`
-        group relative bg-card rounded-2xl border border-border p-6 cursor-pointer
-        shadow-card card-hover gradient-overlay overflow-visible
-        ${featured ? 'md:col-span-2' : ''}
-        ${className}
-      `}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          handleClick();
-        }
-      }}
+    <MagicBento
+      enableSpotlight={true}
+      enableBorderGlow={true}
+      enableStars={true}
+      enableTilt={false}
+      enableMagnetism={false}
+      glowColor="37, 99, 235"
+      spotlightSize={280}
     >
+      <div
+        onClick={!dropdownItems ? handleClick : undefined}
+        className={`
+          group relative bg-card rounded-2xl border border-border p-6 cursor-pointer
+          shadow-card card-hover gradient-overlay overflow-visible
+          ${featured ? 'md:col-span-2' : ''}
+          ${className}
+        `}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleClick();
+          }
+        }}
+      >
       {/* Gradient Icon Badge */}
       <div className="flex items-start gap-4 mb-4">
         <div className="relative">
@@ -84,7 +94,8 @@ const ValueCard = ({
           </svg>
         </div>
       )}
-    </div>
+      </div>
+    </MagicBento>
   );
 
   if (dropdownItems) {

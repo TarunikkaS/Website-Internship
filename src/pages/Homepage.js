@@ -6,6 +6,8 @@ import ValueCard from '../components/ValueCard';
 import ScrollAnimatedCard from '../components/ScrollAnimatedCard';
 import AnimatedCounter from '../components/AnimatedCounter';
 import InteractiveASECO from '../components/InteractiveASECO';
+import BlurText from '../components/BlurText';
+import Antigravity from '../components/Antigravity';
 
 const Homepage = () => {
   const valuesData = [
@@ -73,6 +75,9 @@ const Homepage = () => {
 
   return (
     <>
+      {/* Antigravity Background */}
+      <Antigravity autoAnimate={true} intensity={1} />
+
       {/* Background Video - Full page with transparency */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <video
@@ -95,22 +100,40 @@ const Homepage = () => {
           
           {/* TOP: Company Name and Values */}
           <div className="text-center mb-8">
+            {/* Line 1: Company Name */}
             <h1 
-              className="font-headline text-4xl md:text-5xl lg:text-6xl font-bold mb-3"
-              style={{ color: '#1E3A8A' }}
+              className="font-headline font-bold leading-tight"
+              style={{ 
+                fontFamily: "'League Spartan', sans-serif",
+                fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+                color: '#1E3A8A',
+                marginBottom: '0.25rem'
+              }}
             >
-              Al Shirawi Equipment and Co
+              <BlurText text="Al Shirawi Equipment and Co" delay={0} duration={350} />
             </h1>
+            
+            {/* Line 2: Values and Culture */}
             <p 
-              className="font-body text-2xl md:text-3xl lg:text-4xl font-semibold"
-              style={{ color: '#2563EB', fontFamily: "'DM Sans', sans-serif" }}
+              className="font-semibold"
+              style={{ 
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: 'clamp(1.25rem, 3vw, 2rem)',
+                color: 'rgba(30, 58, 138, 0.85)',
+              }}
             >
-              Values And Culture
+              <BlurText text="Values and Culture" delay={200} duration={350} />
             </p>
           </div>
 
           {/* CENTER: Rotating Circles with LOGO inside */}
-          <div className="relative mb-10">
+          <div 
+            className="relative mb-10"
+            style={{
+              animation: 'fadeIn 500ms ease-out 200ms',
+              animationFillMode: 'both'
+            }}
+          >
             {/* Outer rotating dotted circle */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div 
@@ -181,7 +204,13 @@ const Homepage = () => {
           </div>
 
           {/* BELOW LOGO: ASECO */}
-          <div className="text-center mb-6">
+          <div 
+            className="text-center mb-6"
+            style={{
+              animation: 'fadeIn 600ms ease-out 400ms',
+              animationFillMode: 'both'
+            }}
+          >
             <InteractiveASECO />
           </div>
 
