@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#E0E5EC" />
+    <meta name="description" content="AL SHIRAWI EQUIPMENT (ASECO) - Values and Culture" />
+    <title>ASECO - Values & Culture</title>
+    <style>
+      /* Prevent FOUC (Flash of Unstyled Content) */
+      body {
+        background-color: #E0E5EC;
+        margin: 0;
+        padding: 0;
+      }
+      
+      /* Loading state for better UX */
+      .loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #E0E5EC;
+      }
+      
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid #A3B1C6;
+        border-top: 3px solid #FFFFFF;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root">
+      <!-- Fallback loading state -->
+      <div class="loading">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+  </body>
+</html>

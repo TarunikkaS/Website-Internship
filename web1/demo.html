@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASECO - Values & Culture</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            background-color: #E0E5EC;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Neumorphic Shadows */
+        .neumorph-outset {
+            box-shadow: 8px 8px 16px #A3B1C6, -8px -8px 16px #FFFFFF;
+        }
+
+        .neumorph-inset {
+            box-shadow: inset 8px 8px 16px #A3B1C6, inset -8px -8px 16px #FFFFFF;
+        }
+
+        .neumorph-hover {
+            box-shadow: 12px 12px 24px #A3B1C6, -12px -12px 24px #FFFFFF;
+        }
+
+        .neumorph-pressed {
+            box-shadow: inset 4px 4px 8px #A3B1C6, inset -4px -4px 8px #FFFFFF;
+        }
+
+        /* Intro Animation */
+        .intro-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #E0E5EC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .intro-logo-container {
+            background-color: #E0E5EC;
+            padding: 3rem;
+            border-radius: 32px;
+            box-shadow: 8px 8px 16px #A3B1C6, -8px -8px 16px #FFFFFF;
+        }
+
+        .intro-logo {
+            width: 16rem;
+            height: auto;
+            animation: introZoom 2s ease-out forwards;
+            filter: drop-shadow(0 4px 8px rgba(163, 177, 198, 0.3));
+        }
+
+        @keyframes introZoom {
+            from {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Main Content */
+        .main-content {
+            opacity: 0;
+            transition: opacity 0.8s ease-out;
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .main-content.show {
+            opacity: 1;
+        }
+
+        .hero-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .hero-title h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            color: #374151;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title p {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #6B7280;
+            letter-spacing: 0.05em;
+        }
+
+        @keyframes fadeIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Value Cards Container */
+        .values-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .value-card {
+            background-color: #E0E5EC;
+            border-radius: 32px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 200px;
+            text-align: center;
+            position: relative;
+            user-select: none;
+            animation: fadeIn 0.8s ease-out forwards;
+            animation-fill-mode: backwards;
+        }
+
+        .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 12px 12px 24px #A3B1C6, -12px -12px 24px #FFFFFF;
+        }
+
+        .value-card:active {
+            transform: translateY(2px);
+            box-shadow: inset 4px 4px 8px #A3B1C6, inset -4px -4px 8px #FFFFFF;
+        }
+
+        .value-letter {
+            font-size: 3.75rem;
+            font-weight: 700;
+            color: #374151;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .value-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #6B7280;
+            line-height: 1.3;
+        }
+
+        /* Dropdown */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 1rem;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown-content {
+            background-color: #E0E5EC;
+            border-radius: 32px;
+            padding: 1rem;
+            box-shadow: 8px 8px 16px #A3B1C6, -8px -8px 16px #FFFFFF;
+            min-width: 200px;
+            white-space: nowrap;
+        }
+
+        .dropdown-item {
+            padding: 0.75rem 1.5rem;
+            border-radius: 16px;
+            background-color: #E0E5EC;
+            color: #374151;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 0.5rem;
+            box-shadow: inset 8px 8px 16px #A3B1C6, inset -8px -8px 16px #FFFFFF;
+            display: block;
+            text-decoration: none;
+        }
+
+        .dropdown-item:hover {
+            box-shadow: inset 4px 4px 8px #A3B1C6, inset -4px -4px 8px #FFFFFF;
+        }
+
+        .dropdown-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            animation: fadeIn 0.8s ease-out forwards;
+            animation-delay: 1s;
+            animation-fill-mode: backwards;
+        }
+
+        .footer-content {
+            background-color: #E0E5EC;
+            padding: 2rem;
+            border-radius: 32px;
+            box-shadow: inset 8px 8px 16px #A3B1C6, inset -8px -8px 16px #FFFFFF;
+            display: inline-block;
+        }
+
+        .footer-title {
+            color: #6B7280;
+            font-size: 1.125rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-subtitle {
+            color: #9CA3AF;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .values-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-title h1 {
+                font-size: 3rem;
+            }
+            
+            .intro-logo {
+                width: 12rem;
+            }
+            
+            .intro-logo-container {
+                padding: 2rem;
+            }
+            
+            .value-card {
+                width: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-title p {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Animation delays for staggered effect */
+        .value-card:nth-child(1) { animation-delay: 0.3s; }
+        .value-card:nth-child(2) { animation-delay: 0.4s; }
+        .value-card:nth-child(3) { animation-delay: 0.5s; }
+        .value-card:nth-child(4) { animation-delay: 0.6s; }
+        .value-card:nth-child(5) { animation-delay: 0.7s; }
+    </style>
+</head>
+<body>
+    <!-- Intro Animation -->
+    <div id="intro" class="intro-container">
+        <div class="intro-logo-container">
+            <img src="logo.png" alt="Al Shirawi Equipment Co." class="intro-logo">
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="main-content">
+        <!-- Hero Section -->
+        <div class="hero-title">
+            <h1>ASECO</h1>
+            <p>Values & Culture</p>
+        </div>
+
+        <!-- Values Cards -->
+        <div class="values-container">
+            <!-- A - Adherence to HSEQ -->
+            <div class="value-card neumorph-outset" onclick="toggleDropdown('dropdown-a')">
+                <div class="value-letter">A</div>
+                <div class="value-title">Adherence to Health, Safety, Environment & Quality (HSEQ)</div>
+                <div id="dropdown-a" class="dropdown">
+                    <div class="dropdown-content">
+                        <a href="#health" class="dropdown-item">Health</a>
+                        <a href="#safety" class="dropdown-item">Safety</a>
+                        <a href="#environment" class="dropdown-item">Environment</a>
+                        <a href="#quality" class="dropdown-item">Quality</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- S - Sustainability -->
+            <div class="value-card neumorph-outset" onclick="navigateTo('#sustainability')">
+                <div class="value-letter">S</div>
+                <div class="value-title">Sustainability</div>
+            </div>
+
+            <!-- E - Employee Engagement, Education & Empowerment -->
+            <div class="value-card neumorph-outset" onclick="toggleDropdown('dropdown-e')">
+                <div class="value-letter">E</div>
+                <div class="value-title">Employee Engagement, Education & Empowerment</div>
+                <div id="dropdown-e" class="dropdown">
+                    <div class="dropdown-content">
+                        <a href="#employee-engagement" class="dropdown-item">Employee Engagement</a>
+                        <a href="#education" class="dropdown-item">Education</a>
+                        <a href="#empowerment" class="dropdown-item">Empowerment</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- C - Collaboration -->
+            <div class="value-card neumorph-outset" onclick="toggleDropdown('dropdown-c')">
+                <div class="value-letter">C</div>
+                <div class="value-title">Collaboration with Customers & Suppliers</div>
+                <div id="dropdown-c" class="dropdown">
+                    <div class="dropdown-content">
+                        <a href="#collaboration-customers" class="dropdown-item">Collaboration with Customers</a>
+                        <a href="#collaboration-suppliers" class="dropdown-item">Collaboration with Suppliers</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- O - Operational Excellence -->
+            <div class="value-card neumorph-outset" onclick="navigateTo('#operational-excellence')">
+                <div class="value-letter">O</div>
+                <div class="value-title">Operational Excellence</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-title">AL SHIRAWI EQUIPMENT (ASECO)</div>
+                <div class="footer-subtitle">Building Excellence Through Values</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Intro Animation Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const introElement = document.getElementById('intro');
+            const mainContent = document.getElementById('main-content');
+
+            // Hide intro and show main content after 2 seconds
+            setTimeout(function() {
+                introElement.style.opacity = '0';
+                setTimeout(function() {
+                    introElement.style.display = 'none';
+                    mainContent.classList.add('show');
+                }, 800);
+            }, 2000);
+        });
+
+        // Dropdown functionality
+        let activeDropdown = null;
+
+        function toggleDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            
+            // Close any active dropdown
+            if (activeDropdown && activeDropdown !== dropdown) {
+                activeDropdown.classList.remove('show');
+            }
+
+            // Toggle current dropdown
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+                activeDropdown = null;
+            } else {
+                dropdown.classList.add('show');
+                activeDropdown = dropdown;
+            }
+        }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+            const valueCards = document.querySelectorAll('.value-card');
+            let clickedInside = false;
+
+            valueCards.forEach(card => {
+                if (card.contains(event.target)) {
+                    clickedInside = true;
+                }
+            });
+
+            if (!clickedInside && activeDropdown) {
+                activeDropdown.classList.remove('show');
+                activeDropdown = null;
+            }
+        });
+
+        // Navigation function
+        function navigateTo(url) {
+            // In a real application, this would use proper routing
+            console.log('Navigate to:', url);
+            alert(`Navigating to: ${url}\n\n(This is a demo - actual navigation would be implemented with React Router)`);
+        }
+
+        // Keyboard accessibility
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && activeDropdown) {
+                activeDropdown.classList.remove('show');
+                activeDropdown = null;
+            }
+        });
+
+        // Handle dropdown item clicks
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const href = this.getAttribute('href');
+                navigateTo(href);
+            });
+        });
+    </script>
+</body>
+</html>
