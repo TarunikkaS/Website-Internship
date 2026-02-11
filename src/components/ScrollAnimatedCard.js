@@ -41,7 +41,7 @@ const ScrollAnimatedCard = ({ children, index, featured, className = '' }) => {
   return (
     <div
       ref={ref}
-      className={`${featured ? 'md:col-span-2 lg:col-span-2' : ''} ${className}`}
+      className={`${featured ? 'md:col-span-2 lg:col-span-2' : ''} ${className} h-full`}
       style={{
         position: 'relative',
         zIndex: featured ? 100 : 10 - index,
