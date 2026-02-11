@@ -278,3 +278,77 @@ body {
     opacity: 0;
   }
 }
+
+/* Health Page Specific Styles */
+.health-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.health-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 3px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, #0b3d91, #1f6feb) border-box;
+  transition: all 0.3s ease;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+.health-image-wrapper:hover .health-image {
+  transform: scale(1.02);
+}
+
+/* Dubai Run Info Boxes */
+.dubai-info-box {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border-radius: 18px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dubai-info-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(31, 111, 235, 0.3);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Fitness Gallery Items */
+.fitness-gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.fitness-gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 3px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(135deg, #0b3d91, #1f6feb) border-box;
+  transition: all 0.3s ease;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+.fitness-gallery-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(31, 111, 235, 0.4);
+}
+
+.fitness-gallery-item:hover .fitness-gallery-image {
+  filter: brightness(1.1);
+}

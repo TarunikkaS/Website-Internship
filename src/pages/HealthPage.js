@@ -82,9 +82,9 @@ const HealthPage = () => {
         <Section className="py-24 bg-white/90 backdrop-blur-sm reveal-section reveal">
           <Container>
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8 }}
               viewport={{ once: true }}
               className="text-5xl md:text-6xl font-bold mb-16 text-center"
               style={{ color: '#1E4ED8', fontWeight: 700, letterSpacing: '0.5px' }}
@@ -92,12 +92,12 @@ const HealthPage = () => {
               Medical Camps & Screenings
             </motion.h2>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
               {/* Left side: Content */}
               <motion.div
-                initial={{ opacity: 0, x: -40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
                 viewport={{ once: true }}
                 className="space-y-6"
               >
@@ -112,52 +112,47 @@ const HealthPage = () => {
                     'Nutrition consultation',
                     'Preventive medical checkups'
                   ].map((item, index) => (
-                    <motion.div
+                    <div
                       key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      viewport={{ once: true }}
                       className="flex items-center gap-3"
                     >
                       <CheckCircle className="w-6 h-6 text-blue-600 flex-shrink-0" />
                       <span className="text-lg text-gray-800 font-medium">{item}</span>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </motion.div>
 
               {/* Right side: 2x2 Image Grid */}
               <motion.div
-                initial={{ opacity: 0, x: 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
                 className="grid grid-cols-2 gap-4"
               >
                 {[
-                  { icon: Heart, label: 'Health Checkup' },
-                  { icon: Activity, label: 'Vital Signs' },
-                  { icon: Users, label: 'Consultation' },
-                  { icon: Award, label: 'Preventive Care' }
-                ].map((item, index) => (
-                  <motion.div
+                  '/ASSETS/Health webpage/medicalcamp1.png',
+                  '/ASSETS/Health webpage/medicalcamp2.png',
+                  '/ASSETS/Health webpage/medicalcamp3.png',
+                  '/ASSETS/Health webpage/medicalcamp4.png'
+                ].map((imageSrc, index) => (
+                  <div
                     key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: index * 0.15 }}
-                    viewport={{ once: true }}
-                    className="group relative overflow-hidden rounded-[20px] shadow-lg hover:shadow-2xl transition-all duration-500"
+                    className="health-image-wrapper"
+                    style={{ height: '260px' }}
                   >
-                    <div className="aspect-square bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center relative">
-                      <div className="text-center p-6">
-                        <item.icon className="w-16 h-16 text-blue-600 mx-auto mb-3" />
-                        <span className="text-blue-800 font-semibold text-sm">{item.label}</span>
-                      </div>
-                      {/* Hover overlay */}
-                      <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/10 transition-all duration-500" />
-                    </div>
-                  </motion.div>
+                    <img
+                      src={imageSrc}
+                      alt={`Medical Camp ${index + 1}`}
+                      className="health-image"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        console.log(`Image not found: ${imageSrc}`);
+                      }}
+                    />
+                  </div>
                 ))}
               </motion.div>
             </div>
@@ -168,9 +163,9 @@ const HealthPage = () => {
         <Section className="py-24 reveal-section reveal">
           <Container>
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8 }}
               viewport={{ once: true }}
               className="text-5xl md:text-6xl font-bold mb-16 text-center"
               style={{ color: '#1E4ED8', fontWeight: 700, letterSpacing: '0.5px' }}
@@ -178,47 +173,54 @@ const HealthPage = () => {
               Dubai Run & Employee Participation
             </motion.h2>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Left: Large hero image */}
+            <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-8">
+              {/* Left: Large Dubai Run image - elongated */}
               <motion.div
-                initial={{ opacity: 0, x: -40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
                 viewport={{ once: true }}
                 className="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500"
               >
-                <div className="aspect-[4/3] bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <Activity className="w-24 h-24 text-blue-500 mx-auto mb-4" />
-                    <span className="text-blue-700 text-2xl font-bold">Dubai Run 2025</span>
-                    <p className="text-blue-600 mt-2">Team ASECO in Action</p>
-                  </div>
-                </div>
+                <img
+                  src="/ASSETS/Health webpage/dubairun.png"
+                  alt="Dubai Run 2025 - Team ASECO"
+                  className="w-full h-full object-cover"
+                  style={{ minHeight: '450px', maxHeight: '550px' }}
+                  onError={(e) => {
+                    e.target.parentElement.innerHTML = `
+                      <div class="aspect-[4/3] bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center">
+                        <div class="text-center p-8">
+                          <svg class="w-24 h-24 text-blue-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                          </svg>
+                          <span class="text-blue-700 text-2xl font-bold block">Dubai Run 2025</span>
+                          <p class="text-blue-600 mt-2">Team ASECO in Action</p>
+                        </div>
+                      </div>
+                    `;
+                  }}
+                />
               </motion.div>
 
-              {/* Right: Stacked smaller images */}
+              {/* Right: Stacked info cards */}
               <div className="grid grid-cols-1 gap-4">
                 {[
-                  { icon: Users, label: 'Team Spirit', desc: 'United in fitness' },
-                  { icon: Award, label: '30x30 Challenge', desc: '30 minutes, 30 days' },
-                  { icon: Heart, label: 'Wellness Goals', desc: 'Building healthy habits' }
+                  { label: 'Dubai Run 2025', desc: 'ASECO employees proudly participated in Dubai Run 2025, celebrating health, unity, and community spirit.' },
+                  { label: '30x30 Challenge', desc: 'Encouraging 30 minutes of activity for 30 days to build a culture of daily movement.' },
+                  { label: 'Wellness Goals', desc: 'Driving sustainable healthy habits that strengthen both individual and organizational performance.' }
                 ].map((item, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, x: 40 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: index * 0.2 }}
+                    initial={{ opacity: 0, y: 60 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 + (index * 0.1) }}
                     viewport={{ once: true }}
                     className="group relative bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-500 border border-blue-100"
                   >
-                    <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center flex-shrink-0">
-                        <item.icon className="w-7 h-7 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="text-xl font-bold text-gray-900">{item.label}</h4>
-                        <p className="text-sm text-gray-600">{item.desc}</p>
-                      </div>
+                    <div>
+                      <h4 className="text-xl font-bold text-gray-900 mb-2">{item.label}</h4>
+                      <p className="text-base text-gray-600 leading-relaxed">{item.desc}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -227,9 +229,9 @@ const HealthPage = () => {
 
             {/* Story text */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
               viewport={{ once: true }}
               className="bg-white/95 backdrop-blur-md rounded-3xl p-10 shadow-lg border border-blue-100 mt-8"
             >
@@ -244,9 +246,9 @@ const HealthPage = () => {
         <Section className="py-24 bg-white/90 backdrop-blur-sm reveal-section reveal">
           <Container>
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8 }}
               viewport={{ once: true }}
               className="text-5xl md:text-6xl font-bold mb-16 text-center"
               style={{ color: '#1E4ED8', fontWeight: 700, letterSpacing: '0.5px' }}
@@ -254,35 +256,39 @@ const HealthPage = () => {
               Fitness Challenge Gallery
             </motion.h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+            >
               {[
-                'Stretching Session',
-                'Consultation Booth',
-                'Fitness Demo',
-                'Team Exercise',
-                'Wellness Workshop',
-                'Health Assessment'
-              ].map((label, index) => (
-                <motion.div
+                '/ASSETS/Health webpage/fitnesschallege1.png',
+                '/ASSETS/Health webpage/fitnesschallege2.png',
+                '/ASSETS/Health webpage/fitnesschallege3.png',
+                '/ASSETS/Health webpage/fitnesschallenge4.png',
+                '/ASSETS/Health webpage/fitnesschallege5.png',
+                '/ASSETS/Health webpage/fitnesschallege6.png'
+              ].map((imageSrc, index) => (
+                <div
                   key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                  className="fitness-gallery-item"
+                  style={{ height: '280px' }}
                 >
-                  <div className="aspect-square bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center relative">
-                    <span className="text-blue-700 font-semibold text-lg">{label}</span>
-                    {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/80 transition-all duration-500 flex items-center justify-center">
-                      <span className="text-white font-bold text-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        {label}
-                      </span>
-                    </div>
-                  </div>
-                </motion.div>
+                  <img
+                    src={imageSrc}
+                    alt={`Fitness Challenge ${index + 1}`}
+                    className="fitness-gallery-image"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      console.log(`Fitness image not found: ${imageSrc}`);
+                    }}
+                  />
+                </div>
               ))}
-            </div>
+            </motion.div>
           </Container>
         </Section>
 
