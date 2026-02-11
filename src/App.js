@@ -5,6 +5,8 @@ import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import Homepage from './pages/Homepage';
 import PlaceholderPage from './pages/PlaceholderPage';
+import SafetyPage from './pages/SafetyPage';
+import HealthPage from './pages/HealthPage';
 import VideoIntro from './components/VideoIntro';
 import './index.css';
 
@@ -28,11 +30,11 @@ function App() {
             {/* HSEQ Routes (A) */}
             <Route 
               path="/health" 
-              element={<PlaceholderPage title="Health" description="Our commitment to employee and community health initiatives." />} 
+              element={<HealthPage />} 
             />
             <Route 
               path="/safety" 
-              element={<PlaceholderPage title="Safety" description="Safety-first culture across all operations and projects." />} 
+              element={<SafetyPage />} 
             />
             <Route 
               path="/environment" 

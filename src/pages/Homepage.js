@@ -8,8 +8,28 @@ import AnimatedCounter from '../components/AnimatedCounter';
 import InteractiveASECO from '../components/InteractiveASECO';
 import BlurText from '../components/BlurText';
 import Antigravity from '../components/Antigravity';
+import { useEffect } from 'react';
 
 const Homepage = () => {
+  // Scroll reveal animation
+  useEffect(() => {
+    const sections = document.querySelectorAll('.reveal-section');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
   const valuesData = [
     {
       letter: 'A',
@@ -17,7 +37,7 @@ const Homepage = () => {
       description: 'Commitment to Health, Safety, Environment & Quality standards across all operations.',
       icon: Shield,
       featured: true,
-      dropdownItems: [
+      pills: [
         { label: 'Health', href: '/health' },
         { label: 'Safety', href: '/safety' },
         { label: 'Environment', href: '/environment' },
@@ -36,14 +56,9 @@ const Homepage = () => {
       title: 'Employee Excellence',
       description: 'Fostering engagement, education, and empowerment for our people.',
       icon: Users,
-      dropdownItems: [
-        { label: 'Employee Engagement', href: '/employee-engagement' },
-        { 
-          label: 'Education', 
-          nested: [
-            { label: 'KISS Program', href: '/education/kiss-program' },
-          ],
-        },
+      pills: [
+        { label: 'Education', href: '/education' },
+        { label: 'Engagement', href: '/employee-engagement' },
         { label: 'Empowerment', href: '/empowerment' },
       ],
     },
@@ -52,9 +67,9 @@ const Homepage = () => {
       title: 'Collaboration',
       description: 'Strong partnerships with customers and suppliers driving mutual success.',
       icon: HeartHandshake,
-      dropdownItems: [
-        { label: 'Collaboration with Customers', href: '/collaboration/customers' },
-        { label: 'Collaboration with Suppliers', href: '/collaboration/suppliers' },
+      pills: [
+        { label: 'Customers', href: '/collaboration/customers' },
+        { label: 'Suppliers', href: '/collaboration/suppliers' },
       ],
     },
     {
@@ -94,8 +109,9 @@ const Homepage = () => {
         <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(250, 250, 250, 0.75) 0%, rgba(200, 220, 255, 0.6) 50%, rgba(250, 250, 250, 0.75) 100%)' }}></div>
       </div>
 
+      <div className="page">
       {/* Hero Section - Full viewport height */}
-      <Section className="min-h-screen flex flex-col items-center justify-start relative overflow-hidden pt-24">
+      <Section className="min-h-screen flex flex-col items-center justify-start relative overflow-hidden pt-24 reveal-section">
         <Container className="flex flex-col items-center">
           
           {/* TOP: Company Name and Values */}
@@ -229,29 +245,30 @@ const Homepage = () => {
       </Section>
 
       {/* Values Section */}
-      <Section id="values" className="relative" style={{ zIndex: 1, background: 'linear-gradient(180deg, rgba(42, 58, 140, 0.06) 0%, rgba(23, 29, 85, 0.08) 30%, rgba(77, 124, 255, 0.06) 70%, rgba(42, 58, 140, 0.04) 100%)' }}>
+      <Section id="values" className="relative reveal-section" style={{ zIndex: 1, background: 'linear-gradient(180deg, rgba(42, 58, 140, 0.06) 0%, rgba(23, 29, 85, 0.08) 30%, rgba(77, 124, 255, 0.06) 70%, rgba(42, 58, 140, 0.04) 100%)' }}>
         <Container className="relative" style={{ zIndex: 10 }}>
           <div className="text-center mb-12">
             <SectionLabel>Values Framework</SectionLabel>
-            <h2 className="font-headline text-3xl md:text-4xl text-foreground">
+            <h2 className="font-headline text-3xl md:text-4xl" style={{ color: '#1E4ED8', fontWeight: 700, letterSpacing: '0.5px' }}>
               Explore what <span className="gradient-text">ASECO</span> stands for
             </h2>
           </div>
 
           {/* Values Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ position: 'relative', zIndex: 20 }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch" style={{ position: 'relative', zIndex: 20 }}>
             {valuesData.map((value, index) => (
               <ScrollAnimatedCard
                 key={value.letter}
                 index={index}
                 featured={value.featured}
+                className="flex"
               >
                 <ValueCard
                   letter={value.letter}
                   title={value.title}
                   description={value.description}
                   icon={value.icon}
-                  dropdownItems={value.dropdownItems}
+                  pills={value.pills}
                   href={value.href}
                   featured={value.featured}
                 />
@@ -262,7 +279,7 @@ const Homepage = () => {
       </Section>
 
       {/* Inverted Contrast Section */}
-      <Section dark className="relative overflow-hidden">
+      <Section dark className="relative overflow-hidden reveal-section">
         {/* Dot pattern overlay */}
         <div className="absolute inset-0 dot-pattern-light opacity-[0.03] pointer-events-none"></div>
         
@@ -275,7 +292,7 @@ const Homepage = () => {
             <SectionLabel className="text-white/60">
               Our Impact
             </SectionLabel>
-            <h2 className="font-headline text-3xl md:text-4xl text-white">
+            <h2 className="font-headline text-3xl md:text-4xl" style={{ color: '#1E4ED8', fontWeight: 700, letterSpacing: '0.5px' }}>
               Driving Excellence Every Day
             </h2>
           </div>
@@ -309,11 +326,11 @@ const Homepage = () => {
       </Section>
 
       {/* Contact Section Placeholder */}
-      <Section id="contact" className="bg-white relative z-10">
+      <Section id="contact" className="bg-white relative z-10 reveal-section">
         <Container>
           <div className="text-center">
             <SectionLabel>Get In Touch</SectionLabel>
-            <h2 className="font-headline text-3xl md:text-4xl text-foreground mb-4">
+            <h2 className="font-headline text-3xl md:text-4xl mb-4" style={{ color: '#1E4ED8', fontWeight: 700, letterSpacing: '0.5px' }}>
               Ready to learn more?
             </h2>
             <p className="text-foreground/70 max-w-md mx-auto mb-8">
@@ -331,6 +348,7 @@ const Homepage = () => {
           </div>
         </Container>
       </Section>
+      </div>
     </>
   );
 };

@@ -1,27 +1,18 @@
-import React, { useState } from 'react';
-import DropdownMenu from './DropdownMenu';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import MagicBento from './MagicBento';
+import { ArrowRight } from 'lucide-react';
 
 const ValueCard = ({ 
   letter, 
   title, 
   description, 
   icon: Icon,
-  dropdownItems,
+  pills,
   href,
   featured = false,
   className = '' 
 }) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const handleClick = () => {
-    if (dropdownItems) {
-      setIsDropdownOpen(!isDropdownOpen);
-    } else if (href) {
-      window.location.href = href;
-    }
-  };
-
   const cardContent = (
     <MagicBento
       enableSpotlight={true}
@@ -33,84 +24,86 @@ const ValueCard = ({
       spotlightSize={280}
     >
       <div
-        onClick={!dropdownItems ? handleClick : undefined}
         className={`
-          group relative bg-card rounded-2xl border border-border p-6 cursor-pointer
-          shadow-card card-hover gradient-overlay overflow-visible
+          group relative bg-white rounded-3xl border border-border p-10 lg:p-12
+          shadow-lg hover:shadow-2xl card-hover gradient-overlay overflow-visible
+          transition-all duration-300 flex flex-col h-full
           ${featured ? 'md:col-span-2' : ''}
           ${className}
         `}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            handleClick();
-          }
-        }}
       >
-      {/* Gradient Icon Badge */}
-      <div className="flex items-start gap-4 mb-4">
-        <div className="relative">
-          <div className="w-14 h-14 rounded-xl bg-gradient-accent flex items-center justify-center shadow-glow">
-            {Icon && <Icon className="w-6 h-6 text-white" />}
+        {/* Content with horizontal layout for icon and title */}
+        <div className="flex items-start gap-5 mb-4">
+          {/* Gradient Icon Badge */}
+          <div className="relative flex-shrink-0">
+            <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-2xl bg-gradient-accent flex items-center justify-center shadow-glow">
+              {Icon && <Icon className="w-8 h-8 lg:w-10 lg:h-10 text-white" />}
+            </div>
+            {/* Letter Badge */}
+            <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-foreground text-white text-sm font-bold flex items-center justify-center shadow-md">
+              {letter}
+            </div>
           </div>
-          {/* Letter Badge */}
-          <div className="absolute -bottom-2 -right-2 w-7 h-7 rounded-full bg-foreground text-white text-xs font-bold flex items-center justify-center shadow-md">
-            {letter}
-          </div>
-        </div>
-      </div>
 
-      {/* Content */}
-      <h3 className="font-body font-semibold text-lg text-foreground mb-2 group-hover:text-accent transition-colors duration-200">
-        {title}
-      </h3>
-      <p className="text-sm text-muted-foreground leading-relaxed">
-        {description}
-      </p>
-
-      {/* Arrow indicator for dropdowns */}
-      {dropdownItems && (
-        <div className="mt-4 flex items-center text-accent text-sm font-medium">
-          <span>Explore</span>
-          <svg 
-            className={`w-4 h-4 ml-1 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
+          {/* Title next to icon */}
+          <h3 
+            className="font-body font-semibold text-2xl lg:text-[28px] group-hover:text-accent transition-colors duration-200 leading-tight pt-2"
+            style={{ color: '#1E4ED8', fontWeight: 700 }}
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
+            {title}
+          </h3>
         </div>
-      )}
 
-      {/* Direct link arrow */}
-      {href && !dropdownItems && (
-        <div className="mt-4 flex items-center text-accent text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-          <span>Learn more</span>
-          <svg className="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
+        {/* Description */}
+        <p className="text-lg leading-relaxed text-muted-foreground mb-6">
+          {description}
+        </p>
+
+        {/* Action Section (pills or button) */}
+        <div className="mt-auto">
+          {pills && pills.length > 0 ? (
+            <>
+              {/* Helper text for pills */}
+              <p className="text-sm text-gray-600 mb-4">Click on the values to explore more.</p>
+              
+              {/* Pills Grid */}
+              <div className={`grid gap-3 ${pills.length === 2 ? 'grid-cols-1 md:grid-cols-2' : pills.length === 3 ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-2 md:grid-cols-4'}`}>
+                {pills.map((pill, index) => (
+                  <Link
+                    key={index}
+                    to={pill.href}
+                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-full text-white font-medium text-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg w-full"
+                    style={{ 
+                      background: 'linear-gradient(135deg, #1E3A8A 0%, #1E40AF 50%, #1E4ED8 100%)',
+                      boxShadow: '0 4px 12px rgba(30, 58, 138, 0.3)',
+                      maxWidth: '100%'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.boxShadow = '0 8px 24px rgba(30, 58, 138, 0.5)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(30, 58, 138, 0.3)';
+                    }}
+                  >
+                    {pill.icon && <pill.icon className="w-4 h-4" />}
+                    <span className="truncate">{pill.label}</span>
+                  </Link>
+                ))}
+              </div>
+            </>
+          ) : href ? (
+            <Link
+              to={href}
+              className="inline-flex items-center gap-2 text-accent font-medium text-lg group/btn transition-all duration-200"
+            >
+              <span>Explore more</span>
+              <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover/btn:translate-x-1" />
+            </Link>
+          ) : null}
         </div>
-      )}
       </div>
     </MagicBento>
   );
-
-  if (dropdownItems) {
-    return (
-      <div style={{ position: 'relative', zIndex: isDropdownOpen ? 999 : 1 }}>
-        <DropdownMenu
-          trigger={cardContent}
-          items={dropdownItems}
-          isOpen={isDropdownOpen}
-          onToggle={() => setIsDropdownOpen(!isDropdownOpen)}
-          onClose={() => setIsDropdownOpen(false)}
-        />
-      </div>
-    );
-  }
 
   return cardContent;
 };

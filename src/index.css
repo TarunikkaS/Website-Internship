@@ -184,3 +184,97 @@ body {
 .glow-effect:hover::before {
   opacity: 1;
 }
+
+/* Scroll Reveal Animation */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Page Transition Animation */
+.page {
+  animation: pageFade 0.6s ease forwards;
+}
+
+@keyframes pageFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Bottom Flow Scroll Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Floating Blue Glow Bubbles */
+.bubble-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(30, 78, 216, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  animation: floatUp 15s linear infinite;
+  opacity: 0.6;
+}
+
+.bubble:nth-child(odd) {
+  width: 120px;
+  height: 120px;
+  animation-duration: 20s;
+}
+
+.bubble:nth-child(2) { left: 10%; animation-delay: 0s; }
+.bubble:nth-child(3) { left: 25%; animation-delay: 3s; }
+.bubble:nth-child(4) { left: 40%; animation-delay: 6s; }
+.bubble:nth-child(5) { left: 55%; animation-delay: 2s; }
+.bubble:nth-child(6) { left: 70%; animation-delay: 8s; }
+.bubble:nth-child(7) { left: 85%; animation-delay: 4s; }
+.bubble:nth-child(8) { left: 15%; animation-delay: 10s; }
+.bubble:nth-child(9) { left: 35%; animation-delay: 5s; }
+.bubble:nth-child(10) { left: 60%; animation-delay: 12s; }
+.bubble:nth-child(11) { left: 75%; animation-delay: 7s; }
+.bubble:nth-child(12) { left: 90%; animation-delay: 9s; }
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-120vh) translateX(40px);
+    opacity: 0;
+  }
+}

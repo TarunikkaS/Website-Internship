@@ -17,24 +17,24 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/40 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20 lg:h-[90px]">
           {/* Logo / Brand */}
           <Link 
             to="/" 
-            className="font-body font-semibold text-foreground text-sm tracking-tight hover:text-accent transition-colors duration-200"
+            className="font-body font-semibold text-foreground text-base lg:text-lg tracking-tight hover:text-accent transition-colors duration-200"
           >
             AL SHIRAWI EQUIPMENT (ASECO)
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-10 lg:gap-12">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
                 to={link.href}
-                className={`relative text-sm font-medium transition-colors duration-200 py-2
+                className={`relative text-lg lg:text-xl font-medium transition-colors duration-200 py-2
                   ${isActive(link.href) ? 'text-accent' : 'text-muted-foreground hover:text-foreground'}
                 `}
               >
