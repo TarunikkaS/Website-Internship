@@ -2,7 +2,7 @@
 
 A modern, interactive corporate website showcasing ASECO's core values, safety initiatives, and employee wellness programs. Built with React, featuring smooth animations, glassmorphism design, and comprehensive content sections.
 
-## 🚀 Project Overview
+ Project Overview
 
 This website presents ASECO's commitment to excellence through their **A.S.E.C.O.** values framework:
 - **A** - Adherence to HSEQ (Health, Safety, Environment, Quality)
@@ -11,7 +11,7 @@ This website presents ASECO's commitment to excellence through their **A.S.E.C.O
 - **C** - Collaboration (Customers & Suppliers)
 - **O** - Operational Excellence
 
-## ✨ Features
+Features
 
 ### Design System
 - **Glassmorphism UI** - Frosted glass effects with backdrop blur
@@ -136,7 +136,7 @@ WEBSITE ASECO/
 └── postcss.config.js
 ```
 
-## 🎨 Design Specifications
+##  Design Specifications
 
 ### Color Palette
 - **Primary Blue**: `#1E4ED8` (ASECO brand blue)
@@ -169,7 +169,7 @@ WEBSITE ASECO/
 - **Page Transition**: `pageFade` animation on route change
 - **Floating Bubbles**: 15s linear infinite with blur and scale
 
-## 🚦 Getting Started
+##  Getting Started
 
 ### Prerequisites
 - Node.js v24.x or v25.x (managed via nvm)
@@ -211,7 +211,7 @@ npm run build
 
 Builds the app for production to the `build/` folder. Optimizes for best performance with minification and hashing.
 
-## 🗺️ Routes
+##  Routes
 
 | Route | Component | Status |
 |-------|-----------|--------|
@@ -260,7 +260,7 @@ Builds the app for production to the `build/` folder. Optimizes for best perform
 />
 ```
 
-## 🎯 Key Implementations
+##  Key Implementations
 
 ### Scroll Reveal Animation
 ```javascript
@@ -308,7 +308,7 @@ boxShadow: '0 4px 15px rgba(30, 78, 216, 0.3)',
 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
 ```
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### npm command not found
 ```bash
@@ -334,7 +334,7 @@ PORT=3001 npm start
 - Verify Intersection Observer is initialized in useEffect
 - Confirm threshold is appropriate for viewport height
 
-## 📝 Development Notes
+## Development Notes
 
 ### Completed Features
 - ✅ Navigation component with fixed header
@@ -363,7 +363,7 @@ PORT=3001 npm start
 - 🔄 Analytics tracking
 - 🔄 SEO optimization
 
-## 👥 Contributing
+##  Contributing
 
 This project was developed as part of an internship program. For any questions or suggestions:
 
@@ -371,11 +371,11 @@ This project was developed as part of an internship program. For any questions o
 2. Fork the project and submit a pull request
 3. Contact the development team
 
-## 📄 License
+##  License
 
 Proprietary - ASECO Company
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - ASECO team for brand guidelines and content
 - React community for excellent documentation
