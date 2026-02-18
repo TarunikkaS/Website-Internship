@@ -13,8 +13,6 @@ import {
   AEDChart,
   SolarPanelWaterChart
 } from '../components/SafetyCharts';
-import { Shield } from 'lucide-react';
-
 const SafetyPageComplete = () => {
   // Scroll reveal animation
   useEffect(() => {

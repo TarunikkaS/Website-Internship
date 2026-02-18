@@ -15,7 +15,6 @@ import {
   Users,
   ShieldCheck,
   AlertTriangle,
-  Zap,
   Search
 } from 'lucide-react';
 

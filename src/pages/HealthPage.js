@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Container, Section } from '../components/Layout';
 import MasonryBackground from '../components/MasonryBackground';
-import { Heart, Activity, Users, Award, CheckCircle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 
 const HealthPage = () => {
   // Scroll reveal animation
@@ -124,23 +124,21 @@ const HealthPage = () => {
               </motion.div>
 
               {/* Right side: 2x2 Image Grid */}
-              <motion.div
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="grid grid-cols-2 gap-4"
-              >
+              <div className="grid grid-cols-2 gap-4">
                 {[
                   '/ASSETS/Health webpage/medicalcamp1.png',
                   '/ASSETS/Health webpage/medicalcamp2.png',
                   '/ASSETS/Health webpage/medicalcamp3.png',
                   '/ASSETS/Health webpage/medicalcamp4.png'
                 ].map((imageSrc, index) => (
-                  <div
+                  <motion.div
                     key={index}
+                    initial={{ opacity: 0, rotateY: -15 }}
+                    whileInView={{ opacity: 1, rotateY: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 + (index * 0.1) }}
+                    viewport={{ once: true }}
                     className="health-image-wrapper"
-                    style={{ height: '260px' }}
+                    style={{ height: '260px', perspective: '1000px' }}
                   >
                     <img
                       src={imageSrc}
@@ -152,9 +150,9 @@ const HealthPage = () => {
                         console.log(`Image not found: ${imageSrc}`);
                       }}
                     />
-                  </div>
+                  </motion.div>
                 ))}
-              </motion.div>
+              </div>
             </div>
           </Container>
         </Section>
@@ -173,14 +171,15 @@ const HealthPage = () => {
               Dubai Run & Employee Participation
             </motion.h2>
 
-            <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-8">
               {/* Left: Large Dubai Run image - elongated */}
               <motion.div
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, rotateY: -15 }}
+                whileInView={{ opacity: 1, rotateY: 0 }}
                 transition={{ duration: 0.8, delay: 0.1 }}
                 viewport={{ once: true }}
                 className="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500"
+                style={{ perspective: '1000px' }}
               >
                 <img
                   src="/ASSETS/Health webpage/dubairun.png"
@@ -212,11 +211,12 @@ const HealthPage = () => {
                 ].map((item, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 60 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, rotateX: -15 }}
+                    whileInView={{ opacity: 1, rotateX: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 + (index * 0.1) }}
                     viewport={{ once: true }}
                     className="group relative bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-500 border border-blue-100"
+                    style={{ perspective: '1000px' }}
                   >
                     <div>
                       <h4 className="text-xl font-bold text-gray-900 mb-2">{item.label}</h4>
@@ -256,25 +256,23 @@ const HealthPage = () => {
               Fitness Challenge Gallery
             </motion.h2>
 
-            <motion.div
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
-            >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {[
                 '/ASSETS/Health webpage/fitnesschallege1.png',
                 '/ASSETS/Health webpage/fitnesschallege2.png',
                 '/ASSETS/Health webpage/fitnesschallege3.png',
-                '/ASSETS/Health webpage/fitnesschallenge4.png',
+                '/ASSETS/Health webpage/fitnesschallege4.png',
                 '/ASSETS/Health webpage/fitnesschallege5.png',
                 '/ASSETS/Health webpage/fitnesschallege6.png'
               ].map((imageSrc, index) => (
-                <div
+                <motion.div
                   key={index}
+                  initial={{ opacity: 0, rotateY: -15 }}
+                  whileInView={{ opacity: 1, rotateY: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  viewport={{ once: true }}
                   className="fitness-gallery-item"
-                  style={{ height: '280px' }}
+                  style={{ height: '280px', perspective: '1000px' }}
                 >
                   <img
                     src={imageSrc}
@@ -286,9 +284,9 @@ const HealthPage = () => {
                       console.log(`Fitness image not found: ${imageSrc}`);
                     }}
                   />
-                </div>
+                </motion.div>
               ))}
-            </motion.div>
+            </div>
           </Container>
         </Section>
 

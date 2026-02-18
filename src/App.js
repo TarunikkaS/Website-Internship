@@ -7,6 +7,7 @@ import Homepage from './pages/Homepage';
 import PlaceholderPage from './pages/PlaceholderPage';
 import SafetyPage from './pages/SafetyPage';
 import HealthPage from './pages/HealthPage';
+import SustainabilityPage from './pages/SustainabilityPage';
 import VideoIntro from './components/VideoIntro';
 import './index.css';
 
@@ -48,7 +49,7 @@ function App() {
             {/* Sustainability (S) */}
             <Route 
               path="/sustainability" 
-              element={<PlaceholderPage title="Sustainability" description="Building a sustainable future through responsible innovation." />} 
+              element={<SustainabilityPage />} 
             />
             
             {/* Employee Excellence (E) */}

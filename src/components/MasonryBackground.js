@@ -19,12 +19,6 @@ const MasonryBackground = ({ images = [], className = '' }) => {
   // Repeat images to fill viewport generously
   const repeatedImages = [...images, ...images, ...images, ...images];
 
-  // Generate horizontal/landscape heights for masonry effect
-  const getRandomHeight = (index) => {
-    const heights = [180, 200, 220, 190, 210, 230, 195, 215];
-    return heights[index % heights.length];
-  };
-
   // Render single masonry panel
   const renderMasonryPanel = (keyPrefix) => (
     <div

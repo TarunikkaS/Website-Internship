@@ -14,7 +14,6 @@ const StarBorder = ({
 }) => {
   const borderRef = useRef(null);
   const canvasRef = useRef(null);
-  const animationRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;

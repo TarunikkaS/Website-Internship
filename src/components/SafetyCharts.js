@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
 import {
-  BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-  ResponsiveContainer, ComposedChart, Area
+  BarChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  ResponsiveContainer, ComposedChart
 } from 'recharts';
 
 // Hook to detect when element is in viewport
@@ -11,6 +10,9 @@ const useInView = () => {
   const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !isInView) {
@@ -20,14 +22,10 @@ const useInView = () => {
       { threshold: 0.3 }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    observer.observe(node);
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
+      observer.unobserve(node);
     };
   }, [isInView]);
 
